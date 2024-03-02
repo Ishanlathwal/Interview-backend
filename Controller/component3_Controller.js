@@ -4,6 +4,8 @@ const catchAsyncError = require("../Error_Handler/Catch_Async-Errors");
 const HitCount = require("../Model/Counter3");
 
 exports.getHitCounts3 = catchAsyncError(async (req, res, next) => {
+  console.time("getHitCounts3");
+
   const hitCounts = await HitCount.find();
 
   let createData3HitCount = 0;
@@ -22,16 +24,22 @@ exports.getHitCounts3 = catchAsyncError(async (req, res, next) => {
     createData3HitCount,
     updateData3HitCount,
   });
+  console.timeEnd("getHitCounts3");
 });
 exports.getdata3 = async (req, res, next) => {
+  console.time("getData3");
+
   const component3 = await Component3.find();
   res.status(200).json({
     success: true,
     component3,
   });
+  console.timeEnd("getData3");
 };
 
 exports.createData3 = catchAsyncError(async (req, res, next) => {
+  console.time("createData3");
+
   // Delete existing data in Component1 collection before adding new data
   await Component3.deleteMany();
 
@@ -48,9 +56,12 @@ exports.createData3 = catchAsyncError(async (req, res, next) => {
     success: true,
     component3,
   });
+  console.time("createData3");
 });
 
 exports.updateData3 = catchAsyncError(async (req, res, next) => {
+  console.time("updateData3");
+
   const component3 = await Component3.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -72,19 +83,20 @@ exports.updateData3 = catchAsyncError(async (req, res, next) => {
     success: true,
     component3,
   });
+  console.timeEnd("updateData3");
 });
 
-exports.deleteData3 = catchAsyncError(async (req, res, next) => {
-  const component3 = await Component3.findById(req.params.id);
+// exports.deleteData3 = catchAsyncError(async (req, res, next) => {
+//   const component3 = await Component3.findById(req.params.id);
 
-  if (!component3) {
-    return next(new AppError("data not found", 404));
-  }
+//   if (!component3) {
+//     return next(new AppError("data not found", 404));
+//   }
 
-  await component3.deleteOne();
+//   await component3.deleteOne();
 
-  res.status(200).json({
-    success: true,
-    message: " data deleted successfully",
-  });
-});
+//   res.status(200).json({
+//     success: true,
+//     message: " data deleted successfully",
+//   });
+// });

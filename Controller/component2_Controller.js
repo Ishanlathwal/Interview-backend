@@ -4,6 +4,7 @@ const catchAsyncError = require("../Error_Handler/Catch_Async-Errors");
 const HitCount = require("../Model/Counter2");
 
 exports.getHitCounts2 = catchAsyncError(async (req, res, next) => {
+  console.time("getHitCounts2");
   const hitCounts = await HitCount.find();
 
   let createData2HitCount = 0;
@@ -22,17 +23,23 @@ exports.getHitCounts2 = catchAsyncError(async (req, res, next) => {
     createData2HitCount,
     updateData2HitCount,
   });
+  console.timeEnd("getHitCounts2");
 });
 
 exports.getdata2 = async (req, res, next) => {
+  console.time("getData2");
+
   const component2 = await Component2.find();
   res.status(200).json({
     success: true,
     component2,
   });
+  console.timeEnd("getData2");
 };
 
 exports.createData2 = catchAsyncError(async (req, res, next) => {
+  console.time("createData2");
+
   // Delete existing data in Component1 collection before adding new data
   await Component2.deleteMany();
 
@@ -48,9 +55,12 @@ exports.createData2 = catchAsyncError(async (req, res, next) => {
     success: true,
     component2,
   });
+  console.timeEnd("createData2");
 });
 
 exports.updateData2 = catchAsyncError(async (req, res, next) => {
+  console.time("updateData2");
+
   const component2 = await Component2.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -72,19 +82,20 @@ exports.updateData2 = catchAsyncError(async (req, res, next) => {
     success: true,
     component2,
   });
+  console.timeEnd("updateData2");
 });
 
-exports.deleteData2 = catchAsyncError(async (req, res, next) => {
-  const component2 = await Component2.findById(req.params.id);
+// exports.deleteData2 = catchAsyncError(async (req, res, next) => {
+//   const component2 = await Component2.findById(req.params.id);
 
-  if (!component2) {
-    return next(new AppError("data not found", 404));
-  }
+//   if (!component2) {
+//     return next(new AppError("data not found", 404));
+//   }
 
-  await component2.deleteOne();
+//   await component2.deleteOne();
 
-  res.status(200).json({
-    success: true,
-    message: " data deleted successfully",
-  });
-});
+//   res.status(200).json({
+//     success: true,
+//     message: " data deleted successfully",
+//   });
+// });

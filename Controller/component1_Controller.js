@@ -5,6 +5,7 @@ const catchAsyncError = require("../Error_Handler/Catch_Async-Errors");
 const HitCount = require("../Model/Counter1");
 
 exports.getHitCounts1 = catchAsyncError(async (req, res, next) => {
+  console.time("getHitCounts1");
   const hitCounts = await HitCount.find();
 
   let createData1HitCount = 0;
@@ -23,19 +24,25 @@ exports.getHitCounts1 = catchAsyncError(async (req, res, next) => {
     createData1HitCount,
     updateData1HitCount,
   });
+  console.timeEnd("getHitCounts1");
 });
 
 // Controller to get all data from Component1 collection
 exports.getdata1 = async (req, res, next) => {
+  console.time("getData1");
+
   const component1 = await Component1.find();
   res.status(200).json({
     success: true,
     component1,
   });
+  console.timeEnd("getData1");
 };
 
 // Controller to create new data in Component1 collection
 exports.createData1 = catchAsyncError(async (req, res, next) => {
+  console.time("createData1");
+
   // Delete existing data in Component1 collection before adding new data
   await Component1.deleteMany();
 
@@ -54,10 +61,12 @@ exports.createData1 = catchAsyncError(async (req, res, next) => {
     success: true,
     component2,
   });
+  console.timeEnd("createData1");
 });
 
 // Controller to update data in Component1 collection
 exports.updateData1 = catchAsyncError(async (req, res, next) => {
+  console.time("updateData1");
   const component2 = await Component1.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -79,6 +88,7 @@ exports.updateData1 = catchAsyncError(async (req, res, next) => {
     success: true,
     component2,
   });
+  console.timeEnd("updateData1");
 });
 
 // exports.deleteData1 = catchAsyncError(async (req, res, next) => {
