@@ -1,5 +1,7 @@
+// Import mongoose library for MongoDB interactions
 const mongoose = require("mongoose");
 
+// Function to connect to the database
 const connectDatabase = async () => {
   mongoose
     .connect(process.env.DB_URL)

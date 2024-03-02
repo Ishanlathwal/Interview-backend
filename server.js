@@ -1,4 +1,7 @@
+// Imports
 const app = require("./app");
+
+// Handle uncaught exceptions
 
 process.on("uncaughtException", (err) => {
   console.log(err.stack);
@@ -10,15 +13,17 @@ process.on("uncaughtException", (err) => {
 // Db connection
 const connectDatabase = require("./connectDb/dbConnection");
 
-//config
+// Start the server and log a message
 
 const server = app.listen(process.env.PORT, () =>
   console.log(`app is running on port${port}`),
 );
-//// final error catching
+// Handle unhandled rejections
+
 process.on("unhandledRejection", (err) => {
   console.log(err.stack);
-  console.log("Unhandled Rejection Async Method");
+
+  // Close the server and exit the process with a failure code
 
   server.close(() => {
     process.exit(1);
