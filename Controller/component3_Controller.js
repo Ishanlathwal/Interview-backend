@@ -1,8 +1,10 @@
+// Imports
 const Component3 = require("../Model/component3");
 const AppError = require("../Error_Handler/Error-Handeling_Class");
 const catchAsyncError = require("../Error_Handler/Catch_Async-Errors");
 const HitCount = require("../Model/Counter3");
 
+// Controller to get hit counts for createData3 and updateData3 endpoints
 exports.getHitCounts3 = catchAsyncError(async (req, res, next) => {
   console.time("getHitCounts3");
 
@@ -26,6 +28,8 @@ exports.getHitCounts3 = catchAsyncError(async (req, res, next) => {
   });
   console.timeEnd("getHitCounts3");
 });
+
+// Controller to get all data from Component3 collection
 exports.getdata3 = async (req, res, next) => {
   console.time("getData3");
 
@@ -37,10 +41,11 @@ exports.getdata3 = async (req, res, next) => {
   console.timeEnd("getData3");
 };
 
+// Controller to create new data in Component3 collection
 exports.createData3 = catchAsyncError(async (req, res, next) => {
   console.time("createData3");
 
-  // Delete existing data in Component1 collection before adding new data
+  // Delete existing data in Component3 collection before adding new data
   await Component3.deleteMany();
 
   const component3 = await Component3.create(req.body);
@@ -59,6 +64,7 @@ exports.createData3 = catchAsyncError(async (req, res, next) => {
   console.timeEnd("createData3");
 });
 
+// Controller to update data in Component3 collection
 exports.updateData3 = catchAsyncError(async (req, res, next) => {
   console.time("updateData3");
 

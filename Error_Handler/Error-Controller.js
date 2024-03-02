@@ -1,6 +1,10 @@
+// Import the custom error handler class
+
 const ErrorHandler = require("./Error-Handeling_Class");
 
+// Error handling middleware function
 module.exports = (err, req, res, next) => {
+  // Set default status code and message for the error
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "Internal Server Error";
 

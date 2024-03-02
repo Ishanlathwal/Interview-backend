@@ -1,8 +1,10 @@
+// Imports
 const Component2 = require("../Model/component2");
 const AppError = require("../Error_Handler/Error-Handeling_Class");
 const catchAsyncError = require("../Error_Handler/Catch_Async-Errors");
 const HitCount = require("../Model/Counter2");
 
+// Controller to get hit counts for createData2 and updateData2 endpoints
 exports.getHitCounts2 = catchAsyncError(async (req, res, next) => {
   console.time("getHitCounts2");
   const hitCounts = await HitCount.find();
@@ -26,6 +28,7 @@ exports.getHitCounts2 = catchAsyncError(async (req, res, next) => {
   console.timeEnd("getHitCounts2");
 });
 
+// Controller to get all data from Component2 collection
 exports.getdata2 = async (req, res, next) => {
   console.time("getData2");
 
@@ -37,10 +40,11 @@ exports.getdata2 = async (req, res, next) => {
   console.timeEnd("getData2");
 };
 
+// Controller to create new data in Component2 collection
 exports.createData2 = catchAsyncError(async (req, res, next) => {
   console.time("createData2");
 
-  // Delete existing data in Component1 collection before adding new data
+  // Delete existing data in Component2 collection before adding new data
   await Component2.deleteMany();
 
   const component2 = await Component2.create(req.body);
@@ -58,6 +62,7 @@ exports.createData2 = catchAsyncError(async (req, res, next) => {
   console.timeEnd("createData2");
 });
 
+// Controller to update data in Component2 collection
 exports.updateData2 = catchAsyncError(async (req, res, next) => {
   console.time("updateData2");
 

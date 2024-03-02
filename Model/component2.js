@@ -9,7 +9,7 @@ const component2Schema = new mongoose.Schema({
   },
 });
 
-// Create a model for the Component1 collection using the schema
+// Create a model for the Component2 collection using the schema
 // The first argument is the name of the model, and the second argument is the schema
 
 module.exports = mongoose.model("Component2", component2Schema);

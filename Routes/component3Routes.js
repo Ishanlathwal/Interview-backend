@@ -8,6 +8,8 @@ const {
 
 const router = express.Router();
 
+// Define routes for handling component3 data
+
 router.route("/component3").get(getdata3);
 
 router.route("/component3/:id").patch(updateData3);

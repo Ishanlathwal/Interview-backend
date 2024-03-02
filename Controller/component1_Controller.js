@@ -4,6 +4,8 @@ const AppError = require("../Error_Handler/Error-Handeling_Class");
 const catchAsyncError = require("../Error_Handler/Catch_Async-Errors");
 const HitCount = require("../Model/Counter1");
 
+// Controller to get hit counts for createData1 and updateData1 endpoints
+
 exports.getHitCounts1 = catchAsyncError(async (req, res, next) => {
   console.time("getHitCounts1");
   const hitCounts = await HitCount.find();
@@ -49,7 +51,6 @@ exports.createData1 = catchAsyncError(async (req, res, next) => {
   // Create new data based on request body
   const component2 = await Component1.create(req.body);
 
-  //
   let hitCount = await HitCount.findOne({ endpoint: "createData1" });
   if (!hitCount) {
     hitCount = new HitCount({ endpoint: "createData1", count: 0 });

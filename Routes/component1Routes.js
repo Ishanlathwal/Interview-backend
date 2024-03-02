@@ -7,6 +7,8 @@ const {
 
 const router = express.Router();
 
+// Define routes for handling component1 data
+
 router.route("/component1").get(getdata1);
 
 router.route("/component1/:id").patch(updateData1);

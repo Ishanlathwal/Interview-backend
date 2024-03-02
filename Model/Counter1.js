@@ -1,5 +1,8 @@
+// Import the mongoose library
+
 const mongoose = require("mongoose");
 
+// Define the schema for the hit count document
 const hitCountSchema1 = new mongoose.Schema({
   endpoint: {
     type: String,
@@ -10,10 +13,9 @@ const hitCountSchema1 = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  createData1: Number,
-  updateData1: Number,
 });
 
+// Create a mongoose model based on the hit count schema
 const HitCount = mongoose.model("HitCount1", hitCountSchema1);
 
 module.exports = HitCount;
