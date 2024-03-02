@@ -56,7 +56,7 @@ exports.createData3 = catchAsyncError(async (req, res, next) => {
     success: true,
     component3,
   });
-  console.time("createData3");
+  console.timeEnd("createData3");
 });
 
 exports.updateData3 = catchAsyncError(async (req, res, next) => {
