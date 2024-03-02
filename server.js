@@ -16,7 +16,7 @@ const connectDatabase = require("./connectDb/dbConnection");
 // Start the server and log a message
 
 const server = app.listen(process.env.PORT, () =>
-  console.log(`app is running on port${port}`),
+  console.log(`app is running on port${process.env.PORT}`),
 );
 // Handle unhandled rejections
 
