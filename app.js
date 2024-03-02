@@ -18,11 +18,17 @@ app.use(express.json());
 const component1Route = require("./Routes/component1Routes");
 const component2Route = require("./Routes/component2Routes");
 const component3Route = require("./Routes/component3Routes");
+const hitCount1Route = require("./Routes/HitcountRoutes");
+const hitCount2Route = require("./Routes/HitCountRoutes2");
+const hitCount3Route = require("./Routes/HitCountRoutes3");
 
 // Define routes for each component
 app.use("/api/v1", component1Route);
 app.use("/api/v1", component2Route);
 app.use("/api/v1", component3Route);
+app.use("/api/v1", hitCount1Route);
+app.use("/api/v1", hitCount2Route);
+app.use("/api/v1", hitCount3Route);
 
 // Handle requests for invalid URLs
 app.all("*", (req, res, next) => {
